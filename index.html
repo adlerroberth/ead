@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aulas em Vídeo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 12px;
+      padding: 12px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .main-video {
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .main-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .playlist {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+    }
+
+    .thumb {
+      display: flex;
+      gap: 8px;
+      background: #1c1c1c;
+      padding: 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .thumb:hover {
+      background: #2a2a2a;
+    }
+
+    .thumb iframe {
+      width: 120px;
+      height: 68px;
+      border: none;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .thumb span {
+      font-size: 14px;
+      align-self: center;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+
+      .playlist {
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .thumb {
+        flex-direction: column;
+        min-width: 140px;
+      }
+
+      .thumb iframe {
+        width: 100%;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Aula 1 em tela cheia -->
+    <div class="main-video">
+      <!-- Parâmetros extras para evitar erro 153 e problemas de embed -->
+      <iframe
+        id="player"
+        src="https://www.youtube.com/embed/frjvGef76YM?rel=0&modestbranding=1&playsinline=1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Miniaturas: Aula 2, 3, 4, 5 -->
+    <div class="playlist">
+      <div class="thumb" onclick="trocarVideo('gwcAJzksJ4M')">
+        <iframe src="https://www.youtube.com/embed/gwcAJzksJ4M?rel=0&modestbranding=1&playsinline=1"></iframe>
+        <span>Aula 2</span>
+      </div>
+
+      <div class="thumb" onclick="trocarVideo('qcDQFVIb1N0')">
+        <iframe src="https://www.youtube.com/embed/qcDQFVIb1N0?rel=0&modestbranding=1&playsinline=1"></iframe>
+        <span>Aula 3</span>
+      </div>
+
+      <div class="thumb" onclick="trocarVideo('me7egbu9DoE')">
+        <iframe src="https://www.youtube.com/embed/me7egbu9DoE?rel=0&modestbranding=1&playsinline=1"></iframe>
+        <span>Aula 4</span>
+      </div>
+
+      <div class="thumb" onclick="trocarVideo('Oz-U93WeZJI')">
+        <iframe src="https://www.youtube.com/embed/Oz-U93WeZJI?rel=0&modestbranding=1&playsinline=1"></iframe>
+        <span>Aula 5</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function trocarVideo(id) {
+      const player = document.getElementById('player');
+      player.src = 'https://www.youtube.com/embed/' + id + '?rel=0&modestbranding=1&playsinline=1';
+    }
+  </script>
+
+</body>
+</html>
